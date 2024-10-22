@@ -31,7 +31,7 @@ const verificarQuorum = () =>{
 
     bloques.forEach(bloque => {
         const presentes = parseInt(prompt(`Ingrese el número de diputados correspondientes al bloque ${bloque.nombre}, el cual tiene ${bloque.cantidad} integrantes:`));
-        if (!isNaN(presentes) && presentes > 0 && presentes < bloque.cantidad) {
+        if (!isNaN(presentes) && presentes >= 0 && presentes <= bloque.cantidad) {
             totalPresentes += presentes;
         } else {
             alert(`Por favor, ingrese un número válido. Recuerde que el número no puede ser menor a 0 ni mayor al total de miembros del bloque.`);
