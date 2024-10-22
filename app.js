@@ -1,6 +1,3 @@
-// let usuario = prompt (¡Bienvenido! Ingrese su nombre);
-
-
 // DOS VARIABLES: array con la composición de cada bloque + total de diputados (257)
 const bloques = [
     { nombre: "Unión por la Patria", cantidad: 99 },
@@ -34,15 +31,15 @@ const verificarQuorum = () =>{
 
     bloques.forEach(bloque => {
         const presentes = parseInt(prompt(`Ingrese el número de diputados correspondientes al bloque ${bloque.nombre}, el cual tiene ${bloque.cantidad} integrantes:`));
-        if (!isNaN(presentes) && presentes >= 0) {
+        if (!isNaN(presentes) && presentes > 0 && presentes < bloque.cantidad) {
             totalPresentes += presentes;
         } else {
-            alert(`Por favor, ingrese un número válido.`);
+            alert(`Por favor, ingrese un número válido. Recuerde que el número no puede ser menor a 0 ni mayor al total de miembros del bloque.`);
         }
     });
 
     if (totalPresentes >= quorumRequerido) {
-        alert(`Total de diputados presentes: ${totalPresentes}. ¡Hay quórum! \n\n Puede iniciar la sesión.`);
+        alert(`Total de diputados presentes: ${totalPresentes}. ¡Hay quórum! \n\n Puede iniciar el debate.`);
     } else {
         alert(`Total de diputados presentes: ${totalPresentes}. No hay quórum`);
     }
