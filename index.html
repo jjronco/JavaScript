@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Votación - Cámara de Diputados</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>Simulador de Votación - Cámara de Diputados</h1>
+  </header>
+
+  <div class="container">
+
+    <!-- Muestra composición bloques | Se vincula con la función mostrarBloques -->
+    <div class="section" id="composicion-bloques">
+      <h2>Composición de Bloques</h2>
+      <ul></ul>
+    </div>
+
+    <!-- Controla que haya quorum | Se vincula con la función verificarQuorum -->
+    <div class="section" id="quorum">
+      <h2>Verificar Quórum</h2>
+      <label for="presentes">Número de diputados presentes:</label>
+      <input type="number" id="presentes" min="0">
+      <button onclick="votacion.verificarQuorum()">Verificar Quórum</button>
+      <p id="quorum-mensaje"></p>
+    </div>
+
+    <!-- Opciones para el tipo de mayoría según reglamento | Se vincula con la variable tipoMayoriaSeleccionado y arroja la variable mayoriaRequerida -->
+    <div class="section" id="tipo-mayoria">
+      <h2>Seleccionar Tipo de Mayoría</h2>
+      <label><input type="radio" name="mayoria" value="mitad_presentes"> Mayoría simple de los presentes</label><br>
+      <label><input type="radio" name="mayoria" value="mitad_total"> Mayoría simple del total de diputados</label><br>
+      <label><input type="radio" name="mayoria" value="dos_tercios_presentes"> 2/3 de los presentes</label><br>
+      <label><input type="radio" name="mayoria" value="tres_cuartas_presentes"> 3/4 de los presentes</label><br>
+      <button onclick="votacion.iniciarVotacion()">Iniciar Votación</button>
+      <p id="mensajeMayoria"></p>
+    </div>
+
+
+    <!-- Al establecerse el valor de mayoriaRequerida, se visualiza este div para introducir la votación según cada bloque -->
+    <div id="votacion" style="display:none;">
+    </div>
+
+    <button onclick="votacion.mostrarResultados()">Mostrar Resultados</button>
+
+    <div id="resultados" style="display:none;">
+
+    </div>
+
+  </div>
+  
+  
+  <script src="app.js"></script>
+</body>
+</html>
