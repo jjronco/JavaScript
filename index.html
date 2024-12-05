@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Votación - Cámara de Diputados</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>Simulador de Votación - Cámara de Diputados</h1>
+  </header>
+
+  <div class="container">
+
+    <!-- Muestra composición bloques | Se vincula con la función mostrarBloques -->
+    <div class="section" id="composicion-bloques">
+      <h2>Composición de Bloques</h2>
+      <ul></ul>
+    </div>
+    
+    <!-- Controla que haya quorum | Se vincula con la función verificarQuorum -->
+    <div class="section" id="quorum">
+      <h2>Verificar Quórum</h2>
+      <label for="presentes">Número de diputados presentes:</label>
+      <input type="number" id="presentes" min="0">
+      <button id="verificar-quorum-btn">Verificar Quórum</button>
+      <p id="quorum-mensaje"></p>
+    </div>
+
+    <!-- Colocar el nombre de la votación -->
+    <div class="section" id="nombre-votacion">
+      <h2>Nombre de la Votación</h2>
+      <label for="nombre-votacion-input">Ingrese el nombre de la votación:</label>
+      <input type="text" id="nombre-votacion-input" placeholder="Ej. Votación Proyecto X">
+      <button id="guardar-nombre-votacion">Guardar Nombre</button>
+      <p id="mensaje-nombre"></p>
+  </div>
+
+    <!-- Opciones para el tipo de mayoría según reglamento -->
+    <div class="section" id="tipo-mayoria">
+      <h2>Seleccionar Tipo de Mayoría</h2>
+      <label><input type="radio" name="mayoria" value="mitad_presentes"> Mayoría simple de los presentes</label><br>
+      <label><input type="radio" name="mayoria" value="mitad_total"> Mayoría simple del total de diputados</label><br>
+      <label><input type="radio" name="mayoria" value="dos_tercios_presentes"> 2/3 de los presentes</label><br>
+      <label><input type="radio" name="mayoria" value="tres_cuartas_presentes"> 3/4 de los presentes</label><br>
+      <button id="iniciar-votacion-btn">Iniciar Votación</button>
+      <p id="mensajeMayoria"></p>
+    </div>
+
+    <!-- Carga de votos por bloque para mostrar un mensaje con el resultado | Se vincula con la función mostrarFormularioVotacion y mostrarResultados-->
+    <div id="votacion" style="display:none;"></div>
+    <button id="mostrar-resultados-btn">Mostrar Resultados</button>
+    <div id="resultados" style="display:none;"></div>
+    
+  </div>
+
+  <!-- Se muestran las votaciones anteriores almacenadas en localstorage-->
+  <div class="container">
+    <h2>Historial de Votaciones</h2>
+    <div class="section" id="historial"></div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
