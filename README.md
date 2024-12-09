@@ -4,7 +4,7 @@ Este proyecto busca crear una herramienta que replica el proceso de votación en
 ## Desglose del proyecto
 
 ### 1. **Visualización de bloques**
-Esta funcionalidad muestra la composición de los bloques políticos de la Cámara, con los diputados agrupados por bloque. Los datos se obtienen desde un archivo `diputados.json`, derivado de la información disponible en el [portal de datos abiertos de la HCDN]: https://datos.hcdn.gob.ar/dataset/a80e0fa7-d73a-4ed1-9dec-80465e368951/resource/638cf72a-f993-4211-80e1-43984a529e4f/download/diputados_actuales1.3.json. 
+Esta funcionalidad muestra la composición de los bloques políticos de la Cámara, con los diputados agrupados por bloque. Los datos se obtienen desde un archivo `diputados.json`, derivado de la información disponible en el portal de datos abiertos de la HCDN: https://datos.hcdn.gob.ar/dataset/a80e0fa7-d73a-4ed1-9dec-80465e368951/resource/638cf72a-f993-4211-80e1-43984a529e4f/download/diputados_actuales1.3.json. 
 
 Debido a las siguientes limitaciones:
 - La falta de actualización de los datos originales.
