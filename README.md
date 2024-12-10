@@ -21,7 +21,7 @@ Se procedió a descargar, actualizar y estructurar manualmente el archivo. Este 
 Esta funcionalidad permite calcular si hay suficientes diputados presentes para iniciar una votación, siguiendo los requisitos reglamentarios. El número total de diputados se obtiene directamente de la sumatoria de los integrantes de los bloques.
 
 #### Lógica aplicada:
-- Si el número de presentes es menor a 129, no hay quórum.
+- Hay quórum cuando los Diputados presentes superan a la mitad más uno del Total.
 - Si supera el total de diputados, se muestra un mensaje de error.
 - Si cumple con los requisitos, se habilita la posibilidad de continuar con la votación.
 
