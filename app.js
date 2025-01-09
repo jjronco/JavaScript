@@ -242,35 +242,38 @@ class Votacion {
     }
 
     mostrarFormularioVotacion() {
-        const votacionContainer = document.getElementById("votacion");
-        votacionContainer.innerHTML = "";
+    const votacionContainer = document.getElementById("votacion");
+    votacionContainer.innerHTML = "";
 
-        this.bloques.forEach(bloque => {
-            const bloqueDiv = document.createElement("div");
-            bloqueDiv.className = "bloque";
-            bloqueDiv.innerHTML = `
-                <h3>${bloque.nombre} (${bloque.cantidad})</h3>
-                <label>Votos afirmativos:</label>
-                <input type="number" class="afirmativos" data-bloque="${bloque.nombre}" value="0" min="0" max="${bloque.cantidad}">
-            `;
-            votacionContainer.appendChild(bloqueDiv);
+    // Ordenar bloques de mayor a menor según la cantidad de integrantes
+    const bloquesOrdenados = [...this.bloques].sort((a, b) => b.cantidad - a.cantidad);
 
-            // Listener para limitar que se ingrese un valor superior al total de miembros de cada bloque
-            const input = bloqueDiv.querySelector(".afirmativos");
-            input.addEventListener("input", (event) => {
-                let value = parseInt(event.target.value, 10);
-                if (value > bloque.cantidad) {
-                    // Si el valor supera la cantidad de miembros, se corrige al total
-                    event.target.value = bloque.cantidad;
-                } else if (value < 0) {
-                    // No permitir valores negativos
-                    event.target.value = 0;
-                }
-            });
+    bloquesOrdenados.forEach(bloque => {
+        const bloqueDiv = document.createElement("div");
+        bloqueDiv.className = "bloque";
+        bloqueDiv.innerHTML = `
+            <h3>${bloque.nombre} (${bloque.cantidad})</h3>
+            <label>Votos afirmativos:</label>
+            <input type="number" class="afirmativos" data-bloque="${bloque.nombre}" value="0" min="0" max="${bloque.cantidad}">
+        `;
+        votacionContainer.appendChild(bloqueDiv);
+
+        // Listener para limitar que se ingrese un valor superior al total de miembros de cada bloque
+        const input = bloqueDiv.querySelector(".afirmativos");
+        input.addEventListener("input", (event) => {
+            let value = parseInt(event.target.value, 10);
+            if (value > bloque.cantidad) {
+                // Si el valor supera la cantidad de miembros, se corrige al total
+                event.target.value = bloque.cantidad;
+            } else if (value < 0) {
+                // No permitir valores negativos
+                event.target.value = 0;
+            }
         });
+    });
 
-        votacionContainer.style.display = "block";
-    }
+    votacionContainer.style.display = "block";
+}
 
     mostrarResultados() {
     const votosAfirmativos = document.querySelectorAll(".afirmativos");
