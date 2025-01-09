@@ -273,43 +273,58 @@ class Votacion {
     }
 
     mostrarResultados() {
-        const votosAfirmativos = document.querySelectorAll(".afirmativos");
-        let totalAfirmativos = 0;
+    const votosAfirmativos = document.querySelectorAll(".afirmativos");
+    let totalAfirmativos = 0;
 
-        votosAfirmativos.forEach(input => {
-            totalAfirmativos += parseInt(input.value) || 0;
-        });
+    votosAfirmativos.forEach(input => {
+        totalAfirmativos += parseInt(input.value) || 0;
+    });
 
-        const mensajeResultado = this.compararConMayoria(totalAfirmativos);
-
-        // Guarda el historial con el nombre de la votación
-        this.historial.push({
-            nombreVotacion: this.nombreVotacion,
-            votosAfirmativos: totalAfirmativos,
-            mayoriaRequerida: this.mayoriaRequerida,
-            resultado: mensajeResultado
-        });
-        this.guardarHistorial();
-        this.mostrarHistorial();
-
+    // Verificar si no hay votos ingresados
+    if (totalAfirmativos === 0) {
         Swal.fire({
             toast: true,
             position: 'center',
-            icon: totalAfirmativos >= this.mayoriaRequerida ? 'success' : 'error',
-            title: mensajeResultado,
+            icon: 'error',
+            title: 'No se han ingresado votos válidos.',
             showConfirmButton: false,
             timer: 3000,
             timerProgressBar: true,
         });
-
-        const resultadoFinal = document.getElementById("resultados");
-        resultadoFinal.innerHTML = `
-            <ul>
-                <li>Total de votos afirmativos: ${totalAfirmativos}</li>
-            </ul>
-            <p>${mensajeResultado}</p>`;
-        resultadoFinal.style.display = "block";
+        return;
     }
+
+    const mensajeResultado = this.compararConMayoria(totalAfirmativos);
+
+    // Guarda todos los resultados (aprobados o rechazados)
+    this.historial.push({
+        nombreVotacion: this.nombreVotacion,
+        votosAfirmativos: totalAfirmativos,
+        mayoriaRequerida: this.mayoriaRequerida,
+        resultado: mensajeResultado,
+    });
+
+    this.guardarHistorial();
+    this.mostrarHistorial();
+
+    Swal.fire({
+        toast: true,
+        position: 'center',
+        icon: totalAfirmativos >= this.mayoriaRequerida ? 'success' : 'error',
+        title: mensajeResultado,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+    });
+
+    const resultadoFinal = document.getElementById("resultados");
+    resultadoFinal.innerHTML = `
+        <ul>
+            <li>Total de votos afirmativos: ${totalAfirmativos}</li>
+        </ul>
+        <p>${mensajeResultado}</p>`;
+    resultadoFinal.style.display = "block";
+}
 
     compararConMayoria(totalAfirmativos) {
         return totalAfirmativos >= this.mayoriaRequerida
